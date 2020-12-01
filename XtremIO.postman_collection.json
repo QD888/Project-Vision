@@ -1,12 +1,15 @@
 {
 	"info": {
-		"_postman_id": "a09760f9-dbbf-4e2b-ba68-460db56cf60e",
+		"_postman_id": "7386c99e-0177-4fc4-afe3-6b68f5996f00",
 		"name": "XtremIO",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Root",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -36,6 +39,230 @@
 						"json",
 						"v2",
 						"types"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Root",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{ip}}/api/json/v2/types",
+							"protocol": "https",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"api",
+								"json",
+								"v2",
+								"types"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 12 Dec 2019 23:35:25 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "TwistedWeb/17.5.0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=16070400;includeSubdomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Length",
+							"value": "599"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"children\": [\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/advisory-notices\",\n            \"name\": \"advisory-notices\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/alert-definitions\",\n            \"name\": \"alert-definitions\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/alerts\",\n            \"name\": \"alerts\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/bbus\",\n            \"name\": \"bbus\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/bricks\",\n            \"name\": \"bricks\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/clusters\",\n            \"name\": \"clusters\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/consistency-group-volumes\",\n            \"name\": \"consistency-group-volumes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/consistency-groups\",\n            \"name\": \"consistency-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/dae-controllers\",\n            \"name\": \"dae-controllers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/dae-psus\",\n            \"name\": \"dae-psus\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/dae-row-controllers\",\n            \"name\": \"dae-row-controllers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/daes\",\n            \"name\": \"daes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/data-protection-groups\",\n            \"name\": \"data-protection-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/discover-initiators\",\n            \"name\": \"discover-initiators\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/email-notifier\",\n            \"name\": \"email-notifier\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/events\",\n            \"name\": \"events\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/infiniband-switches\",\n            \"name\": \"infiniband-switches\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/initiator-groups\",\n            \"name\": \"initiator-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/initiators\",\n            \"name\": \"initiators\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/initiators-connectivity\",\n            \"name\": \"initiators-connectivity\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/iscsi-portals\",\n            \"name\": \"iscsi-portals\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/iscsi-routes\",\n            \"name\": \"iscsi-routes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/ldap-configs\",\n            \"name\": \"ldap-configs\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/local-disks\",\n            \"name\": \"local-disks\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/lun-maps\",\n            \"name\": \"lun-maps\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/nvrams\",\n            \"name\": \"nvrams\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/performance\",\n            \"name\": \"performance\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/schedulers\",\n            \"name\": \"schedulers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/slots\",\n            \"name\": \"slots\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snapshot-groups\",\n            \"name\": \"snapshot-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snapshot-sets\",\n            \"name\": \"snapshot-sets\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snapshots\",\n            \"name\": \"snapshots\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snmp-notifier\",\n            \"name\": \"snmp-notifier\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/ssds\",\n            \"name\": \"ssds\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/storage-controller-psus\",\n            \"name\": \"storage-controller-psus\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/storage-controllers\",\n            \"name\": \"storage-controllers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/syslog-notifier\",\n            \"name\": \"syslog-notifier\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/tags\",\n            \"name\": \"tags\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/target-groups\",\n            \"name\": \"target-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/targets\",\n            \"name\": \"targets\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/user-accounts\",\n            \"name\": \"user-accounts\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/volumes\",\n            \"name\": \"volumes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/xenvs\",\n            \"name\": \"xenvs\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/xms\",\n            \"name\": \"xms\"\n        }\n    ],\n    \"links\": [\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/\",\n            \"rel\": \"self\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Clusters",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{pwd}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ip}}/api/json/v2/types/clusters",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"json",
+						"v2",
+						"types",
+						"clusters"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Root",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{ip}}/api/json/v2/types",
+							"protocol": "https",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"api",
+								"json",
+								"v2",
+								"types"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 12 Dec 2019 23:35:25 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "TwistedWeb/17.5.0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=16070400;includeSubdomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Length",
+							"value": "599"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"children\": [\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/advisory-notices\",\n            \"name\": \"advisory-notices\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/alert-definitions\",\n            \"name\": \"alert-definitions\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/alerts\",\n            \"name\": \"alerts\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/bbus\",\n            \"name\": \"bbus\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/bricks\",\n            \"name\": \"bricks\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/clusters\",\n            \"name\": \"clusters\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/consistency-group-volumes\",\n            \"name\": \"consistency-group-volumes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/consistency-groups\",\n            \"name\": \"consistency-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/dae-controllers\",\n            \"name\": \"dae-controllers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/dae-psus\",\n            \"name\": \"dae-psus\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/dae-row-controllers\",\n            \"name\": \"dae-row-controllers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/daes\",\n            \"name\": \"daes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/data-protection-groups\",\n            \"name\": \"data-protection-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/discover-initiators\",\n            \"name\": \"discover-initiators\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/email-notifier\",\n            \"name\": \"email-notifier\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/events\",\n            \"name\": \"events\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/infiniband-switches\",\n            \"name\": \"infiniband-switches\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/initiator-groups\",\n            \"name\": \"initiator-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/initiators\",\n            \"name\": \"initiators\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/initiators-connectivity\",\n            \"name\": \"initiators-connectivity\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/iscsi-portals\",\n            \"name\": \"iscsi-portals\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/iscsi-routes\",\n            \"name\": \"iscsi-routes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/ldap-configs\",\n            \"name\": \"ldap-configs\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/local-disks\",\n            \"name\": \"local-disks\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/lun-maps\",\n            \"name\": \"lun-maps\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/nvrams\",\n            \"name\": \"nvrams\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/performance\",\n            \"name\": \"performance\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/schedulers\",\n            \"name\": \"schedulers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/slots\",\n            \"name\": \"slots\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snapshot-groups\",\n            \"name\": \"snapshot-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snapshot-sets\",\n            \"name\": \"snapshot-sets\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snapshots\",\n            \"name\": \"snapshots\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/snmp-notifier\",\n            \"name\": \"snmp-notifier\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/ssds\",\n            \"name\": \"ssds\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/storage-controller-psus\",\n            \"name\": \"storage-controller-psus\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/storage-controllers\",\n            \"name\": \"storage-controllers\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/syslog-notifier\",\n            \"name\": \"syslog-notifier\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/tags\",\n            \"name\": \"tags\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/target-groups\",\n            \"name\": \"target-groups\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/targets\",\n            \"name\": \"targets\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/user-accounts\",\n            \"name\": \"user-accounts\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/volumes\",\n            \"name\": \"volumes\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/xenvs\",\n            \"name\": \"xenvs\"\n        },\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/xms\",\n            \"name\": \"xms\"\n        }\n    ],\n    \"links\": [\n        {\n            \"href\": \"https://192.168.220.20/api/json/v2/types/\",\n            \"rel\": \"self\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Clusters 1",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{pwd}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ip}}/api/json/v2/types/clusters",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"json",
+						"v2",
+						"types",
+						"clusters"
 					]
 				}
 			},
@@ -913,7 +1140,7 @@
 						}
 					],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -973,7 +1200,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{ip}}/api/json/v2/types/performance?entity=Cluster&granularity=ten_minutes&time-frame=last_hour",
+							"raw": "https://{{ip}}/api/json/v2/types/performance?entity=Cluster&granularity=ten_minutes&time-frame=last_hour&",
 							"protocol": "https",
 							"host": [
 								"{{ip}}"
@@ -1080,7 +1307,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{ip}}/api/json/v2/types/performance?entity=XEnv&granularity=ten_minutes&time-frame=last_hour&prop=cpu_usage",
+					"raw": "https://{{ip}}/api/json/v2/types/performance?entity=XEnv&granularity=ten_minutes&time-frame=last_hour&prop=cpu_usage&",
 					"protocol": "https",
 					"host": [
 						"{{ip}}"
@@ -1123,7 +1350,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{ip}}/api/json/v2/types/performance?entity=XEnv&granularity=ten_minutes&time-frame=last_hour&prop=cpu_usage",
+							"raw": "https://{{ip}}/api/json/v2/types/performance?entity=XEnv&granularity=ten_minutes&time-frame=last_hour&prop=cpu_usage&",
 							"protocol": "https",
 							"host": [
 								"{{ip}}"
@@ -1751,5 +1978,55 @@
 				}
 			]
 		}
-	]
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "Xtrem10",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f2cf46b0-bb24-486a-9536-1d29849cbcdb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fb051293-1d74-481e-9b08-3097c8914866",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "20bc5192-745e-4b4f-a2ad-0b72f63f7079",
+			"key": "ip",
+			"value": "192.168.88.128"
+		},
+		{
+			"id": "1a816ca3-dea2-406d-98b1-335bb19097dd",
+			"key": "pwd",
+			"value": "Xtrem10"
+		}
+	],
+	"protocolProfileBehavior": {}
 }
