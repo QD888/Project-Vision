@@ -31,7 +31,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -201,7 +201,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -351,7 +351,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -505,7 +505,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -679,7 +679,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -849,7 +849,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -1090,7 +1090,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -1234,7 +1234,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -1404,7 +1404,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -1574,7 +1574,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -1744,7 +1744,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -1884,7 +1884,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -2046,7 +2046,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -2186,7 +2186,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -2348,7 +2348,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -2498,7 +2498,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -2664,7 +2664,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -2824,7 +2824,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -2974,7 +2974,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
@@ -3136,7 +3136,7 @@
 						},
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "{{uname}}",
 							"type": "string"
 						}
 					]
