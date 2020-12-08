@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5edf8e1e-3a15-43c6-a81e-bdc0edca5a89",
+		"_postman_id": "c622632e-012f-448c-b4fe-54421d0e37da",
 		"name": "ECS Mgnt API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,19 +11,36 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d5a0e5a0-5b95-4186-9e9c-873fa09bbf2e",
+						"id": "39c13cf9-db38-4367-9bf7-21528393e537",
 						"exec": [
-							"pm.environment.set(\"token\", pm.response.headers.get(\"X-SDS-AUTH-TOKEN\"));"
+							"pm.environment.set(\"token\", pm.response.headers.get(\"X-SDS-AUTH-TOKEN\"));\r",
+							"pm.globals.set(\"token\", pm.response.headers.get(\"X-SDS-AUTH-TOKEN\"));"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{endpointmtg}}/login",
+					"raw": "https://{{endpointmtg}}/login",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
@@ -32,7 +49,207 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Login Mgnt",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{endpointmtg}}/login",
+							"protocol": "https",
+							"host": [
+								"{{endpointmtg}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 08 Dec 2020 04:29:03 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/xml"
+						},
+						{
+							"key": "Content-Length",
+							"value": "93"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-SDS-AUTH-TOKEN",
+							"value": "BAAcNHNGWG02QUpZV2lZN2xjMGltZC9WaXFsWFRzPQMAjAQASHVybjpzdG9yYWdlb3M6VmlydHVhbERhdGFDZW50ZXJEYXRhOmM0NDE4MWRhLTliNjQtNDhiZi1iNDYwLWU3ZDYxYTA4ZDA0ZQIADTE2MDczOTQ1MjEzMDUDAC51cm46VG9rZW46MWNkOWY1NWItOWUyZS00YjkyLThjMmMtZmZhNDQxYTI2MTZlAgAC0A8="
+						},
+						{
+							"key": "X-SDS-AUTH-USERNAME",
+							"value": "root"
+						},
+						{
+							"key": "X-SDS-AUTH-MAX-AGE",
+							"value": "28800"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<loggedIn>\n    <user>root</user>\n</loggedIn>"
+				}
+			]
+		},
+		{
+			"name": "GET List Namespaces",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-SDS-AUTH-TOKEN",
+						"type": "text",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://{{endpointmtg}}/object/namespaces.json",
+					"protocol": "https",
+					"host": [
+						"{{endpointmtg}}"
+					],
+					"path": [
+						"object",
+						"namespaces.json"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3",
+							"description": "Limit the number of list results to be returned",
+							"disabled": true
+						}
+					]
+				},
+				"description": "GET audit logs from ECS for the APJ namespace."
+			},
+			"response": [
+				{
+					"name": "GET Management User Token Count",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-SDS-AUTH-TOKEN",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{emeaendpoint}}/vdc/users/apjadmin/tokenCount",
+							"host": [
+								"{{emeaendpoint}}"
+							],
+							"path": [
+								"vdc",
+								"users",
+								"apjadmin",
+								"tokenCount"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 22 Oct 2020 23:45:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/xml"
+						},
+						{
+							"key": "Content-Length",
+							"value": "128"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_info_token_count>\n    <count>1</count>\n</mgmt_user_info_token_count>"
+				},
+				{
+					"name": "GET All management Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-SDS-AUTH-TOKEN",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{emeaendpoint}}/vdc/users",
+							"host": [
+								"{{emeaendpoint}}"
+							],
+							"path": [
+								"vdc",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 22 Oct 2020 23:48:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/xml"
+						},
+						{
+							"key": "Content-Length",
+							"value": "6483"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_infos>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_solutionowner@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_users@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>andyc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>apjadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>baumaj</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>cbnsmgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>colin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>deleteme</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>domain admins@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>ecsosb-admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ecsvideo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>emcsecurity</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>flo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>kienka@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>koenia</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>kpmg_admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>lscadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>meyerk1@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>monitoruser</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>paulc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulc_nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulh</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>rberesford</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>root</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>splunkapp</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>tim</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>tonimgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>torsten</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ukadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>unruhm</userId>\n    </mgmt_user_info>\n</mgmt_user_infos>"
+				}
+			]
 		},
 		{
 			"name": "Dashboard",
@@ -46,7 +263,8 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/dashboard/zones/localzone",
+					"raw": "https://{{endpointmtg}}/dashboard/zones/localzone",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
@@ -119,13 +337,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/object/bucket?namespace={{namespace}}",
+					"raw": "https://{{endpointmtg}}/object/bucket.json?namespace={{namespace}}",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
 					"path": [
 						"object",
-						"bucket"
+						"bucket.json"
 					],
 					"query": [
 						{
@@ -187,152 +406,6 @@
 			]
 		},
 		{
-			"name": "GET List Namespaces",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-SDS-AUTH-TOKEN",
-						"type": "text",
-						"value": "{{token}}"
-					},
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "{{endpointmtg}}/object/namespaces",
-					"host": [
-						"{{endpointmtg}}"
-					],
-					"path": [
-						"object",
-						"namespaces"
-					],
-					"query": [
-						{
-							"key": "limit",
-							"value": "3",
-							"description": "Limit the number of list results to be returned",
-							"disabled": true
-						}
-					]
-				},
-				"description": "GET audit logs from ECS for the APJ namespace."
-			},
-			"response": [
-				{
-					"name": "GET All management Users",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-SDS-AUTH-TOKEN",
-								"type": "text",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{emeaendpoint}}/vdc/users",
-							"host": [
-								"{{emeaendpoint}}"
-							],
-							"path": [
-								"vdc",
-								"users"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "xml",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 22 Oct 2020 23:48:57 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/xml"
-						},
-						{
-							"key": "Content-Length",
-							"value": "6483"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_infos>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_solutionowner@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_users@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>andyc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>apjadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>baumaj</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>cbnsmgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>colin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>deleteme</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>domain admins@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>ecsosb-admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ecsvideo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>emcsecurity</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>flo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>kienka@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>koenia</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>kpmg_admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>lscadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>meyerk1@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>monitoruser</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>paulc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulc_nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulh</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>rberesford</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>root</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>splunkapp</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>tim</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>tonimgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>torsten</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ukadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>unruhm</userId>\n    </mgmt_user_info>\n</mgmt_user_infos>"
-				},
-				{
-					"name": "GET Management User Token Count",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-SDS-AUTH-TOKEN",
-								"type": "text",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{emeaendpoint}}/vdc/users/apjadmin/tokenCount",
-							"host": [
-								"{{emeaendpoint}}"
-							],
-							"path": [
-								"vdc",
-								"users",
-								"apjadmin",
-								"tokenCount"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "xml",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 22 Oct 2020 23:45:39 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/xml"
-						},
-						{
-							"key": "Content-Length",
-							"value": "128"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_info_token_count>\n    <count>1</count>\n</mgmt_user_info_token_count>"
-				}
-			]
-		},
-		{
 			"name": "GET List Management Users",
 			"request": {
 				"method": "GET",
@@ -350,13 +423,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/vdc/users",
+					"raw": "https://{{endpointmtg}}/vdc/users.json",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
 					"path": [
 						"vdc",
-						"users"
+						"users.json"
 					],
 					"query": [
 						{
@@ -375,6 +449,58 @@
 			},
 			"response": [
 				{
+					"name": "GET All management Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-SDS-AUTH-TOKEN",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{emeaendpoint}}/vdc/users",
+							"host": [
+								"{{emeaendpoint}}"
+							],
+							"path": [
+								"vdc",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 22 Oct 2020 23:48:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/xml"
+						},
+						{
+							"key": "Content-Length",
+							"value": "6483"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_infos>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_solutionowner@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_users@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>andyc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>apjadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>baumaj</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>cbnsmgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>colin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>deleteme</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>domain admins@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>ecsosb-admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ecsvideo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>emcsecurity</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>flo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>kienka@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>koenia</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>kpmg_admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>lscadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>meyerk1@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>monitoruser</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>paulc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulc_nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulh</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>rberesford</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>root</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>splunkapp</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>tim</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>tonimgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>torsten</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ukadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>unruhm</userId>\n    </mgmt_user_info>\n</mgmt_user_infos>"
+				},
+				{
 					"name": "GET Management User Token Count",
 					"originalRequest": {
 						"method": "GET",
@@ -427,58 +553,6 @@
 					],
 					"cookie": [],
 					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_info_token_count>\n    <count>1</count>\n</mgmt_user_info_token_count>"
-				},
-				{
-					"name": "GET All management Users",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-SDS-AUTH-TOKEN",
-								"type": "text",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{emeaendpoint}}/vdc/users",
-							"host": [
-								"{{emeaendpoint}}"
-							],
-							"path": [
-								"vdc",
-								"users"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "xml",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 22 Oct 2020 23:48:57 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/xml"
-						},
-						{
-							"key": "Content-Length",
-							"value": "6483"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_infos>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_solutionowner@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_users@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>andyc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>apjadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>baumaj</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>cbnsmgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>colin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>deleteme</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>domain admins@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>ecsosb-admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ecsvideo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>emcsecurity</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>flo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>kienka@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>koenia</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>kpmg_admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>lscadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>meyerk1@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>monitoruser</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>paulc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulc_nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulh</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>rberesford</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>root</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>splunkapp</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>tim</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>tonimgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>torsten</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ukadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>unruhm</userId>\n    </mgmt_user_info>\n</mgmt_user_infos>"
 				}
 			]
 		},
@@ -500,7 +574,8 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/vdc/users/{{username}}/tokenCount",
+					"raw": "https://{{endpointmtg}}/vdc/users/{{username}}/tokenCount.json",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
@@ -508,7 +583,7 @@
 						"vdc",
 						"users",
 						"{{username}}",
-						"tokenCount"
+						"tokenCount.json"
 					]
 				},
 				"description": "GET audit logs from ECS for the APJ namespace."
@@ -583,12 +658,12 @@
 					{
 						"key": "Content-Type",
 						"type": "text",
-						"value": "application/json",
-						"disabled": true
+						"value": "application/json"
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/object/users/{{namespace}}",
+					"raw": "https://{{endpointmtg}}/object/users/{{namespace}}",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
@@ -601,58 +676,6 @@
 				"description": "GET audit logs from ECS for the APJ namespace."
 			},
 			"response": [
-				{
-					"name": "GET All management Users",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-SDS-AUTH-TOKEN",
-								"type": "text",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{emeaendpoint}}/vdc/users",
-							"host": [
-								"{{emeaendpoint}}"
-							],
-							"path": [
-								"vdc",
-								"users"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "xml",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 22 Oct 2020 23:48:57 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/xml"
-						},
-						{
-							"key": "Content-Length",
-							"value": "6483"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_infos>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_solutionowner@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_users@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>andyc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>apjadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>baumaj</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>cbnsmgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>colin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>deleteme</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>domain admins@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>ecsosb-admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ecsvideo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>emcsecurity</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>flo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>kienka@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>koenia</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>kpmg_admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>lscadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>meyerk1@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>monitoruser</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>paulc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulc_nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulh</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>rberesford</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>root</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>splunkapp</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>tim</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>tonimgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>torsten</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ukadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>unruhm</userId>\n    </mgmt_user_info>\n</mgmt_user_infos>"
-				},
 				{
 					"name": "GET Management User Token Count",
 					"originalRequest": {
@@ -706,6 +729,58 @@
 					],
 					"cookie": [],
 					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_info_token_count>\n    <count>1</count>\n</mgmt_user_info_token_count>"
+				},
+				{
+					"name": "GET All management Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-SDS-AUTH-TOKEN",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{emeaendpoint}}/vdc/users",
+							"host": [
+								"{{emeaendpoint}}"
+							],
+							"path": [
+								"vdc",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 22 Oct 2020 23:48:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/xml"
+						},
+						{
+							"key": "Content-Length",
+							"value": "6483"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mgmt_user_infos>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_solutionowner@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>true</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>10030502_users@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>andyc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>apjadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>baumaj</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>cbnsmgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>colin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>deleteme</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>domain admins@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>ecsosb-admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ecsvideo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>emcsecurity</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>flo</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>kienka@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>koenia</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>kpmg_admin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>lscadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>meyerk1@lsc.muc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>monitoruser</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>paulc</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>false</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulc_nsadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>paulh</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>rberesford</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>root</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>splunkapp</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>tim</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>tonimgr</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>torsten</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>true</isSystemMonitor>\n        <userId>ukadmin</userId>\n    </mgmt_user_info>\n    <mgmt_user_info>\n        <is_external_group>false</is_external_group>\n        <is_locked>false</is_locked>\n        <isSystemAdmin>true</isSystemAdmin>\n        <isSystemMonitor>false</isSystemMonitor>\n        <userId>unruhm</userId>\n    </mgmt_user_info>\n</mgmt_user_infos>"
 				}
 			]
 		},
@@ -727,13 +802,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/vdc/events?namespace={{namespace}}",
+					"raw": "https://{{endpointmtg}}/vdc/events.json?namespace={{namespace}}",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
 					"path": [
 						"vdc",
-						"events"
+						"events.json"
 					],
 					"query": [
 						{
@@ -758,7 +834,8 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/dashboard/zones/localzone/replicationgroups",
+					"raw": "https://{{endpointmtg}}/dashboard/zones/localzone/replicationgroups",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
@@ -833,14 +910,15 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/vdc/instances/storageservers",
+					"raw": "https://{{endpointmtg}}/vdc/instances/storageservers.json",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
 					"path": [
 						"vdc",
 						"instances",
-						"storageservers"
+						"storageservers.json"
 					]
 				}
 			},
@@ -919,7 +997,8 @@
 					}
 				},
 				"url": {
-					"raw": "{{endpointmtg}}/flux/api/external/v2/query",
+					"raw": "https://{{endpointmtg}}/flux/api/external/v2/query",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
@@ -1011,7 +1090,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fa74a7e4-9321-4834-aca8-77bd51432511",
+						"id": "f4aa6293-1709-4522-bf9a-ae918ba020c8",
 						"exec": [
 							"pm.environment.unset(\"token\");"
 						],
@@ -1029,7 +1108,8 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpointmtg}}/logout",
+					"raw": "https://{{endpointmtg}}/logout",
+					"protocol": "https",
 					"host": [
 						"{{endpointmtg}}"
 					],
@@ -1063,5 +1143,54 @@
 			}
 		]
 	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b3a0812c-3eb8-42d7-abec-dda32e960490",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "284c6f39-5844-4b61-a768-9aa46fd035fe",
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"token\", pm.response.headers.get(\"X-SDS-AUTH-TOKEN\"));"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "52c92449-431f-495f-9eef-86a6d2fbcae5",
+			"key": "ip",
+			"value": ""
+		},
+		{
+			"id": "8f59712a-724a-4c6e-86b0-2b0fee007bf1",
+			"key": "username",
+			"value": ""
+		},
+		{
+			"id": "c5c9c9eb-4563-41b7-908a-aef77f68663d",
+			"key": "password",
+			"value": ""
+		},
+		{
+			"id": "0be08ee0-b659-4924-a84e-ab60d417a99a",
+			"key": "endpointmtg",
+			"value": ""
+		},
+		{
+			"id": "b68191ba-32fd-4144-821e-e3f474012524",
+			"key": "namespace",
+			"value": ""
+		}
+	],
 	"protocolProfileBehavior": {}
 }
