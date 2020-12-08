@@ -1984,12 +1984,12 @@
 		"basic": [
 			{
 				"key": "password",
-				"value": "Xtrem10",
+				"value": "",
 				"type": "string"
 			},
 			{
 				"key": "username",
-				"value": "admin",
+				"value": "",
 				"type": "string"
 			}
 		]
@@ -2025,7 +2025,7 @@
 		{
 			"id": "1a816ca3-dea2-406d-98b1-335bb19097dd",
 			"key": "pwd",
-			"value": "Xtrem10"
+			"value": ""
 		}
 	],
 	"protocolProfileBehavior": {}
